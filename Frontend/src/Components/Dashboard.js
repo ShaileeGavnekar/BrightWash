@@ -1,71 +1,74 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { jwtDecode } from 'jwt-decode';
-import { Container, Typography, Grid, Paper } from '@mui/material';
+import { Container, Typography, Grid, Paper, Button } from '@mui/material';
+import { useNavigate, Link } from 'react-router-dom';
 
 const Dashboard = () => {
   const [userDetails, setUserDetails] = useState({});
-  const token = localStorage.getItem('token'); 
-  let userId = null;
-  
-  if (token) {
-    try {
-      const decoded = jwtDecode(token);
-      userId = decoded.userId;
-      console.log('Decoded userId:', userId);
-    } catch (error) {
-      console.error('Error decoding token:', error);
-    }
-  }
-  else{
-    console.log('here')
-  }
+  const token = localStorage.getItem('token');
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchUserDetails = async () => {
       try {
-        const response = await axios.get(`http://localhost:3000/getuserdetails/${userId}`, {
+        const response = await axios.get('http://localhost:3000/getuserdetails', {
           headers: {
-            Authorization: `Bearer ${token}`, // Add token in headers if needed
+            Authorization: `Bearer ${token}`,
           }
         });
         setUserDetails(response.data);
-        console.log('Fetched user details:', response.data);
       } catch (error) {
         console.error('Error fetching user details:', error);
       }
     };
 
-    if (userId) {
+    if (token) {
       fetchUserDetails();
     }
-  }, [userId, token]);
+  }, [token]);
+
+  const handleCreateOrder = () => {
+    navigate('/createorder');
+  };
 
   return (
-    <Container maxWidth="md">
-      <Typography variant="h4" gutterBottom>
+    <Container maxWidth="md" sx={{ paddingTop: 4, paddingBottom: 4 }}>
+      <Typography variant="h4" gutterBottom sx={{ marginBottom: 2, textAlign: 'center' }}>
         Dashboard
       </Typography>
-      <Grid container spacing={2}>
+      <Grid container justifyContent="center" spacing={2}>
         <Grid item xs={12} md={6}>
-          <Paper elevation={3} sx={{ p: 2 }}>
+          <Paper elevation={3} sx={{ padding: 2 }}>
             <Typography variant="h6" gutterBottom>
               User Details
             </Typography>
-            <Typography variant="body1" gutterBottom>
-              <strong>Name:</strong> {userDetails.name }
-            </Typography>
-            <Typography variant="body1" gutterBottom>
-              <strong>Email:</strong> {userDetails.email }
-            </Typography>
-            <Typography variant="body1" gutterBottom>
-              <strong>Date of Birth:</strong> {userDetails.dob ? new Date(userDetails.dob).toLocaleDateString() :new Date(userDetails.dob).toLocaleDateString()}
-            </Typography>
-            <Typography variant="body1" gutterBottom>
-              <strong>Age:</strong> {userDetails.age }
-            </Typography>
+            <Grid container spacing={1} direction="column">
+              <Grid item>
+                <Typography variant="body1" gutterBottom>
+                  <strong>Name:</strong> {userDetails.name}
+                </Typography>
+              </Grid>
+              <Grid item>
+                <Typography variant="body1" gutterBottom>
+                  <strong>Email:</strong> {userDetails.email}
+                </Typography>
+              </Grid>
+              <Grid item>
+                <Typography variant="body1" gutterBottom>
+                  <strong>Date of Birth:</strong> {userDetails.dob ? new Date(userDetails.dob).toLocaleDateString() : ''}
+                </Typography>
+              </Grid>
+            </Grid>
           </Paper>
         </Grid>
+      </Grid>
+      <Grid container justifyContent="center" sx={{ marginTop: 2 }}>
+        <Button variant="contained" color="primary" onClick={handleCreateOrder} sx={{ marginRight: 2 }}>
+          Create Order
+        </Button>
+        <Button variant="contained" color="primary" component={Link} to="/myorders">
+          View My Orders
+        </Button>
       </Grid>
     </Container>
   );

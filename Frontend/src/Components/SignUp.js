@@ -1,9 +1,9 @@
 // import React, { useState } from 'react';
 // import { Container, TextField, Button, Typography, Grid, Box, Link, IconButton, InputAdornment } from '@mui/material';
-// import { Link as RouterLink } from 'react-router-dom';
+// import { Link as RouterLink, useNavigate } from 'react-router-dom';
 // import { Visibility, VisibilityOff } from '@mui/icons-material';
 // import axios from 'axios';
-
+// axios.defaults.withCredentials=true;
 // const SignUp = () => {
 //   const [formData, setFormData] = useState({
 //     name: '',
@@ -15,6 +15,7 @@
 //   const [showPassword, setShowPassword] = useState(false);
 //   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 //   const [errorMessage, setErrorMessage] = useState('');
+//   const navigate = useNavigate();
 
 //   const handleChange = (e) => {
 //     setFormData({
@@ -49,7 +50,9 @@
 //         password: formData.password
 //       });
 //       console.log('User details saved:', response.data);
-//       setErrorMessage(''); // Clear error message if successful
+//       // document.cookie = `token=${response.data.token}; path=/`;
+//       setErrorMessage('');
+//       navigate('/dashboard');
 //     } catch (error) {
 //       console.error('Error saving user details:', error);
 //       setErrorMessage('Failed to save user details. Please try again.');
@@ -172,12 +175,15 @@
 // };
 
 // export default SignUp;
-//****************************************************** */
-import React, { useState } from 'react';
+//******************************* */
+import React, { useState, useContext } from 'react';
 import { Container, TextField, Button, Typography, Grid, Box, Link, IconButton, InputAdornment } from '@mui/material';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import axios from 'axios';
+import { AuthContext } from './AuthContext';
+
+axios.defaults.withCredentials = true;
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
@@ -190,7 +196,9 @@ const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
   const navigate = useNavigate();
+  const { login } = useContext(AuthContext);
 
   const handleChange = (e) => {
     setFormData({
@@ -225,9 +233,17 @@ const SignUp = () => {
         password: formData.password
       });
       console.log('User details saved:', response.data);
-      document.cookie = `token=${response.data.token}; path=/`;
+
+      // Save token to localStorage
+      localStorage.setItem('token', response.data.token);
+
+      // Call login function from AuthContext to update the authentication state
+      login();
+
+      setSuccessMessage('Account created successfully. Please login to continue.');
       setErrorMessage('');
-      navigate('/dashboard');
+      // Optionally, automatically redirect to login after success
+      // navigate('/login');
     } catch (error) {
       console.error('Error saving user details:', error);
       setErrorMessage('Failed to save user details. Please try again.');
@@ -325,6 +341,13 @@ const SignUp = () => {
                 }}
               />
             </Grid>
+            {successMessage && (
+              <Grid item xs={12}>
+                <Typography color="primary" align="center">
+                  {successMessage}
+                </Typography>
+              </Grid>
+            )}
             {errorMessage && (
               <Grid item xs={12}>
                 <Typography color="error" align="center">
