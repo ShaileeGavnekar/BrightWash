@@ -1,27 +1,3 @@
-// import React from 'react';
-// import { Container, Typography ,Button} from '@mui/material';
-// import { useNavigate } from 'react-router-dom';
-
-// const Home = () => {
-//     const navigate = useNavigate();
-//     const handleCreateOrder = () => {
-    
-//     navigate('/createorder');
-//   };
-
-//   return (
-//     <Container>
-//       <Typography variant="h4">Home</Typography>
-//       <Typography>Welcome to the Home page!</Typography>
-//         <Button variant="contained" color="primary" onClick={handleCreateOrder} sx={{ mt: 2 }}>
-//         Create Order
-//       </Button>
-//     </Container>
-//   );
-// };
-
-// export default Home;
-//********************************* */
 import React, { useContext } from 'react';
 import { Container, Typography, Button, Box } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
@@ -30,6 +6,9 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import TwitterIcon from '@mui/icons-material/Twitter';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import EmailIcon from '@mui/icons-material/Email';
+import PhoneIcon from '@mui/icons-material/Phone';
 import laundry from '../Images/Laundry.jpg';
 import { ThemeContext } from '../ThemeContext';
 
@@ -41,36 +20,32 @@ const Home = () => {
     navigate('/createorder');
   };
 
-
   return (
     <Box
-        sx={{
-          height: '100vh',
-          width: '100vw',
-          backgroundImage: `url(${laundry})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          position: 'relative',
-          overflowX: 'hidden', // Prevent horizontal scrollbar
-        }}
-      >
+      sx={{
+        height: '100vh',
+        width: '100vw',
+        backgroundImage: `url(${laundry})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        position: 'relative',
+        overflowX: 'hidden', // Prevent horizontal scrollbar
+      }}
+    >
       <Container
         sx={{
-          // backgroundColor: 'white', // Background color of the container
-          // color: 'black', // Text color
           color: darkMode ? 'white' : 'black',
-          padding: '20px', // Padding inside the container
-          borderRadius: '5px', // Rounded corners
-          maxWidth: '80%', // Limit container width
-          marginBottom: '20px', // Space below the container
-          marginLeft: '50px', // Move container to the left
+          padding: '20px',
+          borderRadius: '5px',
+          maxWidth: '80%',
+          marginBottom: '20px',
+          marginLeft: '50px',
         }}
       >
-      
         <Typography variant="h4" gutterBottom>
           Home
         </Typography>
@@ -86,30 +61,15 @@ const Home = () => {
           Create Order
         </Button>
       </Container>
-      {/* <Button
-        variant="contained"
-        size="small"
-        onClick={toggleTheme}
-        sx={{
-          position: 'absolute',
-          top: '20px',
-          right: '20px',
-          zIndex: '10',
-          fontSize: '0.75rem',
-          padding: '4px 8px',
-        }}
-      >
-        {darkMode ? 'Light Mode' : 'Dark Mode'}
-      </Button> */}
       <Box
         sx={{
           position: 'absolute',
-          top: '%', // Adjust this value to move it slightly down
-          right: '2%', // Move it to the extreme right
+          top: '4%', // Adjust this value to move it slightly down
+          right: '2%',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'flex-start',
-          gap: 2, // Gap between each item
+          gap: 2,
         }}
       >
         {['Washing', 'Dry Cleaning', 'Pick Up and Delivery', 'No Shipping Charges'].map((text, index) => (
@@ -118,7 +78,6 @@ const Home = () => {
             sx={{
               display: 'flex',
               alignItems: 'center',
-              // backgroundColor: 'rgba(255, 255, 255, 0.7)',
               color: darkMode ? 'white' : 'black',
               padding: '8px 16px',
               borderRadius: 1,
@@ -130,41 +89,69 @@ const Home = () => {
           </Box>
         ))}
       </Box>
-        <Box
-          sx={{
+      <Box
+        sx={{
           position: 'absolute',
-          bottom: 0,
-          left: '10px',
-          right:0,
-          width: '100%',
+          bottom: 0, // Adjust this value to position above the social media icons
+          left: 0,
+          right: 0,
           display: 'flex',
           justifyContent: 'center',
           backgroundColor: 'black', // Background color for the row
-          padding: '10px', // Add padding for spacing
-          borderRadius: '0 0 5px 5px', // Rounded corners at the bottom
+          padding: '10px',
+          borderRadius: '0 0 5px 5px',
+          flexDirection: 'column',
         }}
+      >
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            gap: 6, // Increase the gap between icons and text
+            marginBottom: 2,
+            paddingLeft: '10px',
+          }}
         >
-          <Box sx={{ marginRight: '20px' }}>
-          <InstagramIcon sx={{ color: 'white', fontSize: 30 }} />
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+            <LocationOnIcon sx={{ color: 'white' }} />
+            <Typography sx={{ color: 'white' }}>123 Laundry St, Wash City</Typography>
+          </Box>
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+            <EmailIcon sx={{ color: 'white' }} />
+            <Typography sx={{ color: 'white' }}>laundry@example.com</Typography>
+          </Box>
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+            <PhoneIcon sx={{ color: 'white' }} />
+            <Typography sx={{ color: 'white' }}>+1234567890</Typography>
+          </Box>
         </Box>
-        <Box sx={{ marginRight: '20px' }}>
-          <FacebookIcon sx={{ color: 'blue', fontSize: 30 }} />
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'center',
+            backgroundColor: 'black',
+            padding: '10px',
+            borderRadius: '0 0 5px 5px',
+            gap: 4,
+          }}
+        >
+          <Box>
+            <InstagramIcon sx={{ color: 'white', fontSize: 30 }} />
+          </Box>
+          <Box>
+            <FacebookIcon sx={{ color: 'blue', fontSize: 30 }} />
+          </Box>
+          <Box>
+            <YouTubeIcon sx={{ color: 'red', fontSize: 30 }} />
+          </Box>
+          <Box>
+            <TwitterIcon sx={{ color: '#1DA1F2', fontSize: 30 }} />
+          </Box>
         </Box>
-        <Box sx={{ marginRight: '20px' }}>
-          <YouTubeIcon sx={{ color: 'red', fontSize: 30 }} />
-        </Box>
-        <Box>
-          <TwitterIcon sx={{ color: '#1DA1F2', fontSize: 30 }} /> 
-        </Box> 
-        </Box>
-        
-
       </Box>
+    </Box>
   );
 };
 
 export default Home;
-
-
-
-      

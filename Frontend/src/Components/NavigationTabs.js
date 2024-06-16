@@ -1,8 +1,8 @@
-import React,{useContext} from 'react';
-import { useNavigate, useLocation ,Link} from 'react-router-dom';
+import React, { useContext } from 'react';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { AppBar, Toolbar, Button, Typography, Tabs, Tab, Switch } from '@mui/material';
-import { AuthContext} from './AuthContext';
-import { ThemeContext} from '../ThemeContext';
+import { AuthContext } from './AuthContext';
+import { ThemeContext } from '../ThemeContext';
 
 const NavigationTabs = () => {
   const navigate = useNavigate();
@@ -19,19 +19,10 @@ const NavigationTabs = () => {
     <AppBar position="static" color={darkMode ? 'default' : 'primary'}>
       <Toolbar>
         <Typography variant="h6" sx={{ flexGrow: 1 }}>
-          MyApp
+          BrightWash
         </Typography>
         <Switch checked={darkMode} onChange={toggleTheme} />
-        {!isAuthenticated ? (
-          <>
-            <Button color="inherit" component={Link} to="/login">
-              Login
-            </Button>
-            <Button color="inherit" component={Link} to="/signup">
-              Sign Up
-            </Button>
-          </>
-        ) : (
+        {isAuthenticated ? (
           <>
             <Tabs value={currentTab} onChange={handleChange} centered>
               <Tab label="Home" value="/home" />
@@ -42,9 +33,19 @@ const NavigationTabs = () => {
               Logout
             </Button>
           </>
+        ) : (
+          <>
+            <Button color="inherit" component={Link} to="/login">
+              Login
+            </Button>
+            <Button color="inherit" component={Link} to="/signup">
+              Sign Up
+            </Button>
+          </>
         )}
       </Toolbar>
     </AppBar>
   );
 };
+
 export default NavigationTabs;
