@@ -2,7 +2,7 @@ SignUp
 ![Screenshot 2024-06-18 180839](https://github.com/ShaileeGavnekar/BrightWash/assets/119005417/5f9416cf-0ebc-4ebe-a663-6e319b99d7d9)
 
 Login
-![Uploading Screenshot 2024-06-18 180215.png…]()
+![Screenshot 2024-06-18 180215](https://github.com/ShaileeGavnekar/BrightWash/assets/119005417/8274c6e9-0665-4813-adb5-ce376fa164e6)
 
 Home
 ![Screenshot 2024-06-16 030322](https://github.com/ShaileeGavnekar/BrightWash/assets/119005417/124d38d8-634e-40fc-a5d0-0e359225da65)
