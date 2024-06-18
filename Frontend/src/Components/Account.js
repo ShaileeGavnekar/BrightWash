@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Container, Typography } from '@mui/material';
 import { ThemeContext } from '../ThemeContext';
-import Dashboard from './Dashboard'; // Adjust the path based on your project structure
+import Dashboard from './Dashboard'; 
 
 const Account = () => {
   const { darkMode } = useContext(ThemeContext);
@@ -24,8 +24,6 @@ const Account = () => {
       <Typography variant="body1" gutterBottom>
         This is the account page. Here you can view and edit your account details.
       </Typography>
-
-      {/* Render Dashboard Component */}
       <Dashboard />
     </Container>
   );

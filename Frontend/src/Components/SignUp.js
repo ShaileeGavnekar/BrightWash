@@ -47,10 +47,10 @@ const SignUp = () => {
 
     try {
       const response = await axios.post('http://localhost:3000/signup', {
-        customer_id: 1, // Adjust according to your logic
+        customer_id: 1,
         name: formData.name,
         email: formData.email,
-        dob: new Date(formData.dob).toISOString(), // Convert to ISO string
+        dob: new Date(formData.dob).toISOString(), 
         age: new Date().getFullYear() - new Date(formData.dob).getFullYear(),
         password: formData.password
       });

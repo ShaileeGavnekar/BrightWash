@@ -33,7 +33,7 @@ const Home = () => {
         alignItems: 'center',
         justifyContent: 'space-between',
         position: 'relative',
-        overflowX: 'hidden', // Prevent horizontal scrollbar
+        overflowX: 'hidden',
       }}
     >
       <Container
@@ -64,7 +64,7 @@ const Home = () => {
       <Box
         sx={{
           position: 'absolute',
-          top: '4%', // Adjust this value to move it slightly down
+          top: '4%', 
           right: '2%',
           display: 'flex',
           flexDirection: 'column',
@@ -92,12 +92,12 @@ const Home = () => {
       <Box
         sx={{
           position: 'absolute',
-          bottom: 0, // Adjust this value to position above the social media icons
+          bottom: 0, 
           left: 0,
           right: 0,
           display: 'flex',
           justifyContent: 'center',
-          backgroundColor: 'black', // Background color for the row
+          backgroundColor: 'black', 
           padding: '10px',
           borderRadius: '0 0 5px 5px',
           flexDirection: 'column',
@@ -108,7 +108,7 @@ const Home = () => {
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-            gap: 6, // Increase the gap between icons and text
+            gap: 6, 
             marginBottom: 2,
             paddingLeft: '10px',
           }}

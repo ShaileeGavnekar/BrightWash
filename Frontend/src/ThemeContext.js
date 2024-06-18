@@ -1,4 +1,3 @@
-// src/ThemeContext.js
 import React, { createContext, useState } from 'react';
 import { createTheme, ThemeProvider as MuiThemeProvider, CssBaseline } from '@mui/material';
 import { ThemeProvider as EmotionThemeProvider } from '@emotion/react';
