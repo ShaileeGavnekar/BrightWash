@@ -56,16 +56,15 @@ const SignUp = () => {
       });
       console.log('User details saved:', response.data);
 
-      // Save token to localStorage
+      
       localStorage.setItem('token', response.data.token);
 
-      // Call login function from AuthContext to update the authentication state
+
       login();
 
       setSuccessMessage('Account created successfully. Please login to continue.');
       setErrorMessage('');
-      // Optionally, automatically redirect to login after success
-      // navigate('/login');
+      
     } catch (error) {
       console.error('Error saving user details:', error);
       setErrorMessage('Failed to save user details. Please try again.');

@@ -35,10 +35,10 @@ const Login = () => {
       const response = await axios.post('http://localhost:3000/login', formData);
       console.log('Login successful:', response.data);
 
-      // Save token to localStorage
+      
       localStorage.setItem('token', response.data.token);
 
-      // Call login function from AuthContext to update the authentication state
+      
       login();
 
       setErrorMessage('');

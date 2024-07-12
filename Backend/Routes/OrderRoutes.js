@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Order = require('../models/Order');
 const jwt = require('jsonwebtoken');
-const secretKey = 'your_secret_key'; // Use a more secure key and store it safely
+const secretKey = 'your_secret_key'; 
 
 const verifyToken = (req, res, next) => {
   const token = req.cookies.token || (req.header('Authorization') && req.header('Authorization').replace('Bearer ', ''));

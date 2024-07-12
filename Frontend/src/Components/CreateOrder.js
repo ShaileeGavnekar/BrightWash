@@ -22,7 +22,7 @@ const CreateOrder = () => {
   const navigate = useNavigate();
 
   const handleChange = (e) => {
-    // Ensure only non-negative integer values are set
+    
     const value = parseInt(e.target.value, 10);
     if (!isNaN(value) && value >= 0) {
       setOrderData({
@@ -64,7 +64,7 @@ const CreateOrder = () => {
         }
       });
       setSuccessMessage('Laundry booked successfully!');
-      setErrorMessage(''); // Clear error message on success
+      setErrorMessage(''); 
     } catch (error) {
       console.error('Error creating order:', error);
       setErrorMessage('Error creating order. Please try again later.');
@@ -102,7 +102,7 @@ const CreateOrder = () => {
                 type="number"
                 value={orderData.shirtCost}
                 fullWidth
-                disabled // Fixed price, user cannot change
+                disabled 
               />
             </Grid>
             <Grid item xs={6}>
@@ -124,7 +124,7 @@ const CreateOrder = () => {
                 type="number"
                 value={orderData.jeansCost}
                 fullWidth
-                disabled // Fixed price, user cannot change
+                disabled 
               />
             </Grid>
             <Grid item xs={6}>
@@ -146,7 +146,7 @@ const CreateOrder = () => {
                 type="number"
                 value={orderData.sheetsCost}
                 fullWidth
-                disabled // Fixed price, user cannot change
+                disabled 
               />
             </Grid>
             <Grid item xs={12}>
