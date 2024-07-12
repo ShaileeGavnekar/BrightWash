@@ -55,8 +55,6 @@ const SignUp = () => {
         password: formData.password
       });
       console.log('User details saved:', response.data);
-
-      // Save token to localStorage
       localStorage.setItem('token', response.data.token);
 
       // Call login function from AuthContext to update the authentication state
