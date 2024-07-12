@@ -5,8 +5,8 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
 const path = require('path');
-const User = require('./models/User'); // Ensure this path is correct
-const orderRoutes = require('./Routes/OrderRoutes'); // Import the order routes
+const User = require('./models/User');
+const orderRoutes = require('./Routes/OrderRoutes'); 
 
 const app = express();
 const port = 3000;
@@ -15,7 +15,7 @@ const secretKey = 'your_secret_key';
 const corsOptions = {
   origin: 'http://localhost:3000', 
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  credentials: true, // Allow credentials (cookies, authorization headers, etc.)
+  credentials: true, 
   allowedHeaders: 'Content-Type,Authorization'
 };
 
@@ -150,7 +150,7 @@ app.post('/saveuserdetails', verifyToken, async (req, res) => {
     }
 });
 
-app.use('/orders', orderRoutes); // Use the order routes
+app.use('/orders', orderRoutes); 
 
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
