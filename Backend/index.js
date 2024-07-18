@@ -7,10 +7,12 @@ const cookieParser = require('cookie-parser');
 const path = require('path');
 const User = require('./models/User');
 const orderRoutes = require('./Routes/OrderRoutes'); 
-
+const dotenv = require("dotenv");
 const app = express();
 const port = 3000;
 const secretKey = 'your_secret_key'; 
+
+dotenv.config();
 
 const corsOptions = {
   origin: 'http://localhost:3000', 
@@ -23,8 +25,8 @@ app.use(express.json());
 app.use(cors(corsOptions));
 app.use(cookieParser());
 
-const dbURI = 'mongodb+srv://admin:test123@details.65oegff.mongodb.net/?retryWrites=true&w=majority&appName=Details';
-mongoose.connect(dbURI, {
+
+mongoose.connect(process.env.dbURI, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 }).then(() => {
